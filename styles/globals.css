@@ -7,10 +7,21 @@ body {
 }
 
 a {
-  color: inherit;
   text-decoration: none;
 }
 
 * {
   box-sizing: border-box;
+}
+
+nav {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  max-width: 5000px;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 16px;
 }

@@ -5,7 +5,7 @@ export default function Navbar() {
   const { locale: activeLocale, locales, asPath } = useRouter();
 
   const availableLocales = locales.filter((locale) => locale !== activeLocale);
-
+  
   return (
     <div className="container">
       <nav>
@@ -15,11 +15,7 @@ export default function Navbar() {
               <a>Home</a>
             </Link>
           </li>
-          <li>
-            <Link href="/contact">
-              <a>Contact Us</a>
-            </Link>
-          </li>
+       
         </ul>
         <ul>
           {availableLocales.map((locale) => {

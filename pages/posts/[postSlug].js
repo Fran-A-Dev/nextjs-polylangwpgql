@@ -79,7 +79,7 @@ export async function getStaticProps({ params = {} } = {}) {
   };
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
   const apolloClient = getApolloClient();
 
   const data = await apolloClient.query({
@@ -100,14 +100,24 @@ export async function getStaticPaths() {
 
   const posts = data?.data.posts.edges.map(({ node }) => node);
 
+  const paths = posts.map(({ slug }) => {
+    return {
+      params: {
+        postSlug: slug,
+      },
+    };
+  });
+
   return {
-    paths: posts.map(({ slug }) => {
-      return {
-        params: {
-          postSlug: slug,
-        },
-      };
-    }),
+    paths: [...paths,
+      ...paths.flatMap((path) => {
+        return locales.map((locale) => {
+          return {
+            ...path,
+            locale,
+          };
+        })})
+  ],
     fallback: false,
   };
 }

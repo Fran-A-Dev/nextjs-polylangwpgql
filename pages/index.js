@@ -25,6 +25,7 @@ export default function Home({ page, posts }) {
           {posts &&
             posts.length > 0 &&
             posts.map((post) => {
+              console.log(post);
               return (
                 <li key={post.slug} className={styles.card}>
                   <Link href={post.path}>
@@ -57,9 +58,11 @@ export default function Home({ page, posts }) {
   );
 }
 
-export async function getStaticProps({ language }) {
+export async function getStaticProps({ locale }) {
   const apolloClient = getApolloClient();
-   language = "ES"
+
+  const language = locale.toUpperCase();
+
   const data = await apolloClient.query({
     query: gql`
     query posts($language: LanguageCodeFilterEnum!)  {
@@ -94,7 +97,7 @@ export async function getStaticProps({ language }) {
     .map((post) => {
       return {
         ...post,
-        ...language,
+        language,
         path: `/posts/${post.slug}`,
       };
     });
