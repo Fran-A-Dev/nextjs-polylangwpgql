@@ -6,6 +6,7 @@ import { getApolloClient } from "../../lib/apollo-client";
 
 import styles from "../../styles/Home.module.css";
 
+
 export default function Post({ post, site }) {
   return (
     <div className={styles.container}>
@@ -19,20 +20,20 @@ export default function Post({ post, site }) {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>{post.title}</h1>
+        <h1 className={styles.title}>{post.translation.title}</h1>
 
         <div className={styles.grid}>
           <div
             className={styles.content}
             dangerouslySetInnerHTML={{
-              __html: post.content,
+              __html: post.translation.content,
             }}
           />
         </div>
 
         <p className={styles.backToHome}>
-          <Link href="/">
-            <a>&lt; Back to home</a>
+        <Link href="/">
+            <a>&lt; Back To Home</a>
           </Link>
         </p>
       </main>
@@ -40,31 +41,45 @@ export default function Post({ post, site }) {
   );
 }
 
-export async function getStaticProps({ params = {} } = {}) {
-  const { postSlug } = params;
-
-  const apolloClient = getApolloClient();
+export async function getStaticProps({params, locale}) {
+const { postSlug } = params;
+const language = locale.toUpperCase();
+  
+const apolloClient = getApolloClient();
 
   const data = await apolloClient.query({
     query: gql`
-      query PostBySlug($slug: String!) {
-        generalSettings {
-          title
-        }
-        postBy(slug: $slug) {
+    query PostBySlug($slug: String!, $language: LanguageCodeEnum!) {
+      generalSettings {
+        title
+      }
+      postBy(slug: $slug) {
+        id
+        content
+        title
+        slug
+        translation(language: $language) {
           id
+          slug
           content
           title
-          slug
+          language {
+            locale
+            slug
+          }
         }
       }
+    }
     `,
     variables: {
-      slug: postSlug,
+      slug: params.postSlug,
+      language
     },
   });
 
-  const post = data?.data.postBy;
+  let post = data?.data.postBy;
+
+  
 
   const site = {
     ...data?.data.generalSettings,
@@ -73,6 +88,8 @@ export async function getStaticProps({ params = {} } = {}) {
   return {
     props: {
       post,
+      language,
+      path: `/posts/${post.slug}`,
       site,
     },
     revalidate: 10,
