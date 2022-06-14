@@ -35,7 +35,7 @@ export default function Home({ page, posts }) {
                           __html: post.title,
                         }}
                       />
-                      <div
+                      <div className={styles.excerpt}
                         dangerouslySetInnerHTML={{
                           __html: post.excerpt,
                         }}

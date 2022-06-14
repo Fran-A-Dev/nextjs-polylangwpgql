@@ -1,18 +1,19 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import styles from "../components/Navbar.module.css"
 
 export default function Navbar() {
   const { locale: activeLocale, locales, asPath } = useRouter();
 
   const availableLocales = locales.filter((locale) => locale !== activeLocale);
-  
+
   return (
     <div className="container">
       <nav>
         <ul>
           <li>
             <Link href="/">
-              <a>Home</a>
+              <a className={styles.home}>Home</a>
             </Link>
           </li>
        
@@ -22,7 +23,7 @@ export default function Navbar() {
             return (
               <li key={locale}>
                 <Link href={asPath} locale={locale}>
-                  <a>{locale.toUpperCase()}</a>
+                  <a className={styles.toggle}>{locale.toUpperCase()}</a>
                 </Link>
               </li>
             );

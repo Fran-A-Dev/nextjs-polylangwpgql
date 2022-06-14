@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    
 }
 
 a {
@@ -19,10 +20,13 @@ nav {
   display: flex;
   align-items: center;
   max-width: 5000px;
+  border-bottom: 1px solid rgba(121, 121, 121, 0.976);
+  background-color: rgba(0, 0, 0, 0.899);
 }
 
 nav li {
   display: inline-block;
   margin-left: 16px;
   font-size: larger;
+  color: yellow;
 }

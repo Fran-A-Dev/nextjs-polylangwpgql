@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.899);
 }
 
 .main {
@@ -20,7 +21,7 @@
 
 
 .title a {
-  color: #0070f3;
+  color: #0170ef;
   text-decoration: none;
 }
 
@@ -34,16 +35,19 @@
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
+  color:yellow;
 }
 
 .title,
 .description {
   text-align: center;
+  color: yellow;
 }
 
 .description {
   line-height: 1.5;
   font-size: 1.5rem;
+  color: yellow;
 }
 
 .grid {
@@ -61,18 +65,19 @@
   margin: 1rem;
   width: 100%;
   text-align: left;
-  color: inherit;
+  color: yellow;
   text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
+
+  
 }
 
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: #3c97ff;
+  border-color: #58a6ff;
 }
 
 .card a {
@@ -83,6 +88,7 @@
 .card h3 {
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
+  color: yellow
 }
 
 .card p {
@@ -104,6 +110,11 @@
 
 .content {
   font-size: 1.4em;
+  color: yellow;
+}
+
+.excerpt {
+  color:yellow
 }
 
 .backToHome {
@@ -112,4 +123,9 @@
   padding-top: 2em;
   border-top: solid 1px lightgray;
   margin-top: 2em;
+  
+}
+
+.back {
+  color: yellow;
 }

@@ -33,7 +33,7 @@ export default function Post({ post, site }) {
 
         <p className={styles.backToHome}>
         <Link href="/">
-            <a>&lt; Back To Home</a>
+            <a className={styles.back}>&lt; Back To Home</a>
           </Link>
         </p>
       </main>
