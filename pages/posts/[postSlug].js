@@ -74,7 +74,7 @@ const apolloClient = getApolloClient();
     variables: {
       slug: params.postSlug,
       language
-    },
+      },
   });
 
   let post = data?.data.postBy;
